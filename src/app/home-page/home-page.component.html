@@ -1,15 +1,30 @@
 <body>
-    @if (gameList.length !=0) {
-        <mat-card class="carte" appearance="outlined">
-            <mat-card-content>
-                    @for (game of gameList; track game) {
-                        <button mat-raised-button (click)="openDialog(game.target, game.action, game.player)">{{game.player}}</button>
-                    }
-                    
-            </mat-card-content>
-          </mat-card>
-    }
+  @if (gameList.length !=0) {
+  <mat-card class="carte" appearance="outlined">
+    <mat-card-content>
+      @for (game of gameList; track game) {
+      <button
+        mat-raised-button
+        (click)="openDialog(game.target, game.action, game.player)"
+      >
+        {{ game.player }}
+      </button>
+      }
+    </mat-card-content>
+  </mat-card>
+  }
     <div class="run">
-        <button (click)="runGame()" mat-flat-button>Run</button>
+        <button (click)="runGame()" mat-flat-button>Commencer le jeu</button>
     </div>
+    
+    @if (invalidSize) {
+        <mat-card class="carte" appearance="outlined">
+          <mat-card-content>
+            <mat-error
+              >Vous devez avoir autant de joueurs que d'actions pour lancer le jeu
+              !</mat-error
+            >
+          </mat-card-content>
+        </mat-card>
+        }
 </body>

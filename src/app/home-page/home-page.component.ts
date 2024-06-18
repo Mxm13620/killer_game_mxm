@@ -26,7 +26,7 @@ export interface DialogData {
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [MatButtonModule,MatCardModule,MatChipsModule,MatTooltipModule],
+  imports: [MatButtonModule,MatCardModule,MatChipsModule,MatTooltipModule,MatFormFieldModule, MatInputModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
 })
@@ -35,6 +35,7 @@ export class HomePageComponent {
   namesList = new Array<String>
   actionsList = new Array<String>
   gameList: any = []
+  invalidSize:boolean = false
   readonly dialog = inject(MatDialog);
   readonly game = signal('');
 
@@ -76,6 +77,8 @@ export class HomePageComponent {
         action: action
       })
     })
+    } else {
+      this.invalidSize = true
     }
   }
 
