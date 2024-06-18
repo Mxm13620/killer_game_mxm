@@ -1,0 +1,7 @@
+{
+  "routes": [
+    "/",
+    "/add-action",
+    "/add-name"
+  ]
+}
