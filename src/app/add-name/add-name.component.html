@@ -1,0 +1,26 @@
+<body>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Name</mat-label>
+          <input type="name" matInput [formControl]="name"
+                 placeholder="John Doe">
+        </mat-form-field>
+        <div>
+            <button mat-flat-button type="button" (click)="addName()">Add Name</button>
+        </div>
+        <div>
+          @for (name of namesList; track name; let index = $index) {
+            <mat-list role="list">
+              <mat-list-item role="listitem">
+                {{name}}
+                <button class="button-delete" mat-fab type="button" (click)="deleteName(index)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </mat-list-item>
+  
+            </mat-list>
+        }
+        </div>
+      </form>
+</body>
+

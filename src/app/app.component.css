@@ -1,0 +1,23 @@
+.button-row {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    max-width: 600px;
+    margin-left: 660px;
+    margin-top: 10px;
+  }
+
+  .button-nav {
+    margin-left: 10px;
+  }
+
+  .centerHeader{
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .carte {
+    display: inline-block;
+  }

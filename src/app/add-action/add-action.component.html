@@ -1,0 +1,27 @@
+<body>
+
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Action</mat-label>
+          <input type="action" matInput [formControl]="action"
+                 placeholder="Réciter l'alphabet à l'envers">
+        </mat-form-field>
+        <div>
+            <button mat-flat-button type="button" (click)="addAction()">Add Action</button>
+        </div>
+        <div>
+          @for (action of actionsList; track action; let index = $index) {
+            <mat-list role="list">
+              <mat-list-item role="listitem">
+                {{action}}
+                <button class="button-delete" mat-fab type="button" (click)="deleteAction(index)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </mat-list-item>
+  
+            </mat-list>
+        }
+        </div>
+      </form>
+</body>
+

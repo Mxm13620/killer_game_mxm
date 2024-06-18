@@ -1,0 +1,17 @@
+<body>
+    @if (gameList.length !=0) {
+        <mat-card class="carte" appearance="outlined">
+            <mat-card-content>
+                <mat-chip-set aria-label="Fish selection">
+                    @for (game of gameList; track game) {
+                        <mat-chip matTooltip="target = {{game.target}} action = {{game.action}}">{{game.player}}</mat-chip>
+                    }
+                    
+                  </mat-chip-set>
+            </mat-card-content>
+          </mat-card>
+    }
+    <div class="run">
+        <button (click)="runGame()" mat-flat-button>Run</button>
+    </div>
+</body>

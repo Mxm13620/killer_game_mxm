@@ -1,0 +1,28 @@
+
+<div class="centerHeader">
+    <mat-card class="carte" appearance="outlined">
+        <mat-card-content>
+            <h1>Le jeu du Killer</h1>
+            <h4>Par Maxime Z</h4>
+        </mat-card-content>
+      </mat-card>
+    </div>
+<div class="button-row">
+    <button class="button-nav" mat-flat-button (click)="addName()">New Name</button>
+    <button class="button-nav" mat-flat-button (click)="addAction()">New Action</button>
+    <button class="button-nav" mat-flat-button (click)="game()">Game</button>
+</div>
+
+<div>
+    @if (display === 'game') {
+        <app-home-page class="centerHeader"></app-home-page>
+    }
+    @if (display === 'action') {
+        <app-add-action class="centerHeader"></app-add-action>
+    }
+    @if (display === 'name') {
+        <app-add-name class="centerHeader"></app-add-name>
+    }
+</div>
+
+

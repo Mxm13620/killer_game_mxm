@@ -1,0 +1,10 @@
+.carte {
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .run{
+    display: block;
+    margin-top: 10px;
+    justify-content: center;
+  }
