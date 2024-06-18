@@ -2,12 +2,10 @@
     @if (gameList.length !=0) {
         <mat-card class="carte" appearance="outlined">
             <mat-card-content>
-                <mat-chip-set aria-label="Fish selection">
                     @for (game of gameList; track game) {
-                        <mat-chip matTooltip="target = {{game.target}} action = {{game.action}}">{{game.player}}</mat-chip>
+                        <button mat-raised-button (click)="openDialog(game.target, game.action, game.player)">{{game.player}}</button>
                     }
                     
-                  </mat-chip-set>
             </mat-card-content>
           </mat-card>
     }

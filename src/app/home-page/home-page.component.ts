@@ -1,9 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject, model, signal } from '@angular/core';
 import { StockageServiceService } from '../stockage-service.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+export interface DialogData {
+  player: string;
+  target: string;
+  action: string;
+}
 
 @Component({
   selector: 'app-home-page',
@@ -17,6 +35,8 @@ export class HomePageComponent {
   namesList = new Array<String>
   actionsList = new Array<String>
   gameList: any = []
+  readonly dialog = inject(MatDialog);
+  readonly game = signal('');
 
   constructor(public stockageService: StockageServiceService){
     this.stockageService.namesObservable.subscribe((namesList)=>{
@@ -57,5 +77,46 @@ export class HomePageComponent {
       })
     })
     }
+  }
+
+  openDialog(target: string, action: string, player: string): void {
+    const dialogRef = this.dialog.open(GameDialog, {
+      data: {target: target, action: action, player: player},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if (result !== undefined) {
+        this.game.set(result);
+      }
+    });
+  }
+}
+
+
+@Component({
+  selector: 'game-dialog',
+  templateUrl: 'game-dialog.html',
+  standalone: true,
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogClose,
+  ],
+})
+export class GameDialog {
+  readonly dialogRef = inject(MatDialogRef<GameDialog>);
+  readonly data = inject<DialogData>(MAT_DIALOG_DATA);
+  readonly target = model(this.data.target);
+  readonly action = model(this.data.action);
+  readonly player = model(this.data.player);
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }
